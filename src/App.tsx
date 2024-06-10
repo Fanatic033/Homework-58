@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import Modal from './Components/Modal/Modal.tsx';
 import Alert from './Components/Alert/Alert.tsx';
+import {CSSTransition} from 'react-transition-group';
 
 const App = () => {
   const btnSettings = [
@@ -29,13 +30,17 @@ const App = () => {
           Content
         </p>
       </Modal>
-      {alert && (
-        <div className={'w-50 mt-5'}>
-          <Alert type={'warning'} onDismiss={closeAlert} show={alert}>Hello</Alert>
-          <Alert type={'success'}>Success</Alert>
-        </div>
-      )
-      }
+      <CSSTransition
+        in={alert}
+        timeout={500}
+        classNames={'alert'}
+        unmountOnExit
+      >
+          <div className={'w-50 mt-5'}>
+            <Alert type={'warning'} onDismiss={closeAlert}>Hello</Alert>
+            <Alert type={'success'}>Success</Alert>
+          </div>
+      </CSSTransition>
     </>
   );
 };

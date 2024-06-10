@@ -1,4 +1,5 @@
 import React, {PropsWithChildren} from 'react';
+import './Alert.css';
 
 interface Props extends PropsWithChildren {
   show?: boolean;
