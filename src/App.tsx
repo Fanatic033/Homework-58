@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import Modal from './Components/Modal/Modal.tsx';
+import Alert from './Components/Alert/Alert.tsx';
 
 const App = () => {
   const btnSettings = [
@@ -7,12 +8,16 @@ const App = () => {
     {type: 'danger', label: 'Close', onClick: () => console.log('clicked cancel')}
   ];
   const [showModal, setShowModal] = useState(false);
+  const [alert, setAlert] = useState(true);
+  const closeAlert = () => {
+    setAlert(false);
+  };
   return (
     <>
       <button
         className={'btn btn-primary ms-5 mt-5'}
         onClick={() => setShowModal(true)}>
-        click me!
+        click modal
       </button>
       <Modal
         show={showModal}
@@ -23,10 +28,14 @@ const App = () => {
         <p className={'modal-body'}>
           Content
         </p>
-        <div className="modal-footer">
-
-        </div>
       </Modal>
+      {alert && (
+        <div className={'w-50 mt-5'}>
+          <Alert type={'warning'} onDismiss={closeAlert} show={alert}>Hello</Alert>
+          <Alert type={'success'}>Success</Alert>
+        </div>
+      )
+      }
     </>
   );
 };
