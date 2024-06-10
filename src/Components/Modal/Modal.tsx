@@ -14,17 +14,15 @@ const Modal: React.FC<Props> = ({show, title, onClose, children}) => {
         style={{display: show ? 'block' : 'none'}}/>
       <div
         className="modal show"
-        style={{display: show ? 'block' : 'none'}}
-        onClick={onClose}
-      >
+        style={{display: show ? 'block' : 'none'}}>
         <div className="modal-dialog">
           <div
-            className="modal-content"
-            onClick={(event) => event.stopPropagation()}
-
-          >
+            className="modal-content">
             <div className="modal-header">
               <h1 className="modal-title fs-5">{title}</h1>
+              <button className={'btn ms-auto'} onClick={onClose}>
+                X
+              </button>
             </div>
             {children}
           </div>
